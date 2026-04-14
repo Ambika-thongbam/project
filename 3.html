@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Math Tools Pro</title>
+
+<style>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  text-align: center;
+  color: #333;
+  background: linear-gradient(135deg,#a18cd1,#fbc2eb,#a6c1ee);
+}
+
+/* HEADER */
+header {
+  padding: 15px;
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.2);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* NAV */
+nav a {
+  margin: 6px;
+  padding: 8px 16px;
+  border-radius: 25px;
+  background: rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  background: #fff;
+  transform: scale(1.1);
+}
+
+/* SECTIONS */
+section, #home {
+  display: none;
+  margin: 30px auto;
+  padding: 25px;
+  width: 90%;
+  max-width: 420px;
+  border-radius: 25px;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+#home { display: block; }
+
+/* HERO */
+.hero {
+  padding: 25px;
+  border-radius: 25px;
+  background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+}
+
+/* STUDENT CARD */
+.student {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.6);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+/* INPUT */
+input, textarea {
+  padding: 12px;
+  margin: 10px;
+  width: 85%;
+  border-radius: 12px;
+  border: none;
+}
+
+/* BUTTON */
+button {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(135deg,#667eea,#764ba2);
+  color: white;
+  cursor: pointer;
+}
+
+/* RESULT BEAUTIFUL */
+.result {
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 15px;
+  background: linear-gradient(135deg,#ffffff,#f1f3ff);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  font-weight: bold;
+}
+
+/* REVIEW */
+.review-box {
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 15px;
+  background: #ffffffcc;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>🌸 Math Tools Pro</h2>
+<p style="font-size:14px;">✨ Smart • Fast • Beautiful</p>
+
+<nav>
+<a onclick="showHome()">Home</a>
+<a onclick="show('fib')">Fibonacci</a>
+<a onclick="show('fact')">Factorial</a>
+<a onclick="show('prime')">Prime</a>
+<a onclick="show('evenodd')">Even/Odd</a>
+<a onclick="show('sum')">Sum</a>
+<a onclick="show('pal')">Palindrome</a>
+<a onclick="show('arm')">Armstrong</a>
+<a onclick="show('table')">Table</a>
+<a onclick="show('review')">Review</a>
+</nav>
+</header>
+
+<!-- HOME -->
+<div id="home">
+<div class="hero">
+<h1>Math Tools Pro</h1>
+<p>Simple and useful math programs</p>
+</div>
+
+<div class="student">
+<h3>👩‍🎓 Student Information</h3>
+<p><b>Name:</b> Ambika Thongbam</p>
+<p><b>Roll No:</b> BC2327</p>
+<p><b>College:</b> NIELIT Akampat</p>
+</div>
+</div>
+
+<!-- TOOLS (same as before, shortened here) -->
+
+<section id="fib">
+<h2>Fibonacci</h2>
+<input id="fibInput" type="number">
+<button onclick="fibonacci()">Generate</button>
+<div class="result" id="fibResult"></div>
+</section>
+
+<section id="fact">
+<h2>Factorial</h2>
+<input id="factInput" type="number">
+<button onclick="factorial()">Calculate</button>
+<div class="result" id="factResult"></div>
+</section>
+
+<section id="prime">
+<h2>Prime</h2>
+<input id="primeInput" type="number">
+<button onclick="primeCheck()">Check</button>
+<div class="result" id="primeResult"></div>
+</section>
+
+<section id="evenodd">
+<h2>Even/Odd</h2>
+<input id="evenInput" type="number">
+<button onclick="evenOdd()">Check</button>
+<div class="result" id="evenResult"></div>
+</section>
+
+<section id="sum">
+<h2>Sum</h2>
+<input id="sumInput" type="number">
+<button onclick="sumCalc()">Calculate</button>
+<div class="result" id="sumResult"></div>
+</section>
+
+<section id="pal">
+<h2>Palindrome</h2>
+<input id="palInput">
+<button onclick="palindrome()">Check</button>
+<div class="result" id="palResult"></div>
+</section>
+
+<section id="arm">
+<h2>Armstrong</h2>
+<input id="armInput" type="number">
+<button onclick="armstrong()">Check</button>
+<div class="result" id="armResult"></div>
+</section>
+
+<section id="table">
+<h2>Table</h2>
+<input id="tableInput" type="number">
+<button onclick="table()">Generate</button>
+<div class="result" id="tableResult"></div>
+</section>
+
+<!-- REVIEW -->
+<section id="review">
+<h2>⭐ Give Your Review</h2>
+<textarea id="reviewText" placeholder="Write your feedback..."></textarea><br>
+<button onclick="submitReview()">Submit</button>
+
+<div class="review-box" id="reviewResult"></div>
+</section>
+
+<script>
+function show(id){
+document.getElementById("home").style.display="none";
+document.querySelectorAll("section").forEach(x=>x.style.display="none");
+document.getElementById(id).style.display="block";
+}
+
+function showHome(){
+document.getElementById("home").style.display="block";
+document.querySelectorAll("section").forEach(x=>x.style.display="none");
+}
+
+/* FUNCTIONS (same but aesthetic output) */
+
+function fibonacci(){
+let n=parseInt(fibInput.value);
+if(isNaN(n)){ fibResult.innerHTML="⚠️ Enter number"; return; }
+let a=0,b=1,res=[];
+for(let i=0;i<n;i++){res.push(a);let t=a+b;a=b;b=t;}
+fibResult.innerHTML="✨ "+res.join(", ");
+}
+
+function factorial(){
+let n=parseInt(factInput.value);
+if(isNaN(n)){ factResult.innerHTML="⚠️ Enter number"; return; }
+let f=1; for(let i=1;i<=n;i++) f*=i;
+factResult.innerHTML="🎯 Factorial = "+f;
+}
+
+function primeCheck(){
+let n=parseInt(primeInput.value);
+if(isNaN(n)){ primeResult.innerHTML="⚠️ Enter number"; return; }
+let flag=n>1;
+for(let i=2;i<n;i++) if(n%i==0) flag=false;
+primeResult.innerHTML=flag?"✅ Prime":"❌ Not Prime";
+}
+
+function evenOdd(){
+let n=parseInt(evenInput.value);
+if(isNaN(n)){ evenResult.innerHTML="⚠️ Enter number"; return; }
+evenResult.innerHTML=(n%2==0)?"🔵 Even":"🟣 Odd";
+}
+
+function sumCalc(){
+let n=parseInt(sumInput.value);
+if(isNaN(n)){ sumResult.innerHTML="⚠️ Enter number"; return; }
+let s=0; for(let i=1;i<=n;i++) s+=i;
+sumResult.innerHTML="➕ Sum = "+s;
+}
+
+function palindrome(){
+let s=palInput.value;
+if(!s){ palResult.innerHTML="⚠️ Enter value"; return; }
+let rev=s.split("").reverse().join("");
+palResult.innerHTML=(s==rev)?"🔁 Palindrome":"❌ Not Palindrome";
+}
+
+function armstrong(){
+let n=parseInt(armInput.value);
+if(isNaN(n)){ armResult.innerHTML="⚠️ Enter number"; return; }
+let sum=0,temp=n;
+while(temp>0){let d=temp%10;sum+=d*d*d;temp=Math.floor(temp/10);}
+armResult.innerHTML=(sum==n)?"🌟 Armstrong":"❌ Not Armstrong";
+}
+
+function table(){
+let n=parseInt(tableInput.value);
+if(isNaN(n)){ tableResult.innerHTML="⚠️ Enter number"; return; }
+let res="";
+for(let i=1;i<=10;i++) res+=`${n} x ${i} = ${n*i}<br>`;
+tableResult.innerHTML=res;
+}
+
+function submitReview(){
+let text=reviewText.value;
+if(!text){ reviewResult.innerHTML="⚠️ Write something"; return; }
+reviewResult.innerHTML=`💬 "${text}" <br> Thank you for your feedback ❤️`;
+}
+</script>
+
+</body>
+</html>
